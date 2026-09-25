@@ -1,0 +1,26 @@
+# macOS
+.DS_Store
+
+# Xcode
+DerivedData/
+build/
+*.xcuserstate
+xcuserdata/
+*.xccheckout
+*.moved-aside
+
+# Swift / test artifacts
+.build/
+*.profraw
+*.profdata
+
+# Local Cdocs data and backups
+*.store
+*.store-shm
+*.store-wal
+*.cdocsbackup
+
+# Local secrets and environment overrides
+.env
+.env.*
+*.local

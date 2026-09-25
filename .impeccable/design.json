@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-25T18:06:52Z",
+  "title": "Design System: Cdocs",
+  "extensions": {
+    "colorMeta": {
+      "accent-blue": { "role": "primary", "displayName": "Azul Cdocs", "canonical": "#26659C" },
+      "surface-canvas": { "role": "neutral", "displayName": "Canvas do sistema", "canonical": "Canvas" },
+      "text-primary": { "role": "neutral", "displayName": "Texto primário do sistema", "canonical": "CanvasText" },
+      "text-secondary": { "role": "neutral", "displayName": "Texto secundário do sistema", "canonical": "GrayText" },
+      "warning-orange": { "role": "state", "displayName": "Laranja de atenção", "canonical": "orange" },
+      "destructive-red": { "role": "state", "displayName": "Vermelho destrutivo", "canonical": "red" },
+      "favorite-yellow": { "role": "state", "displayName": "Amarelo de favorito", "canonical": "yellow" }
+    },
+    "typographyMeta": {
+      "detail-title": { "displayName": "Título do runbook", "purpose": "Identifica o procedimento no detalhe; único título com tamanho fixo de 28 pt." },
+      "section-title": { "displayName": "Título de seção", "purpose": "Cria pontos de retomada no runbook com title3 semibold e SF Symbol." },
+      "body": { "displayName": "Corpo operacional", "purpose": "Prosa, Markdown e entradas usando o text style body do macOS." },
+      "label": { "displayName": "Rótulo e metadado", "purpose": "Labels compactos, badges, contadores e informação de apoio." },
+      "code": { "displayName": "Código", "purpose": "Comandos, logs, mensagens e códigos de erro em fonte monoespaçada." }
+    },
+    "shadows": [],
+    "motion": [],
+    "breakpoints": [
+      { "name": "window-min", "value": "980pt × 640pt" },
+      { "name": "window-default", "value": "1280pt × 780pt" },
+      { "name": "sidebar-width", "value": "190–280pt; ideal 220pt" },
+      { "name": "list-width", "value": "300–470pt; ideal 350pt" },
+      { "name": "runbook-reading-width", "value": "760pt max" },
+      { "name": "editor-sheet", "value": "820pt × 660pt min; 940pt × 780pt ideal" }
+    ]
+  },
+  "components": [],
+  "narrative": {
+    "northStar": "A Bancada de Resolução",
+    "overview": "Cdocs é uma ferramenta operacional nativa do macOS: direta, calma e feita para consulta durante um incidente. A estrutura mantém biblioteca, resultados e procedimento simultaneamente visíveis; o conteúdo técnico ocupa o centro e a personalidade aparece na precisão, não na decoração. Controles, materiais, menus, seleção e tipografia nativos garantem previsibilidade e adaptação aos temas claro e escuro.",
+    "keyCharacteristics": [
+      "NavigationSplitView nativo em três colunas",
+      "Runbooks com largura de leitura máxima de 760 pt",
+      "SF Symbols acompanhando rótulos e estados",
+      "Cor restrita a ação, seleção, aviso e estado",
+      "Superfícies semânticas adaptáveis a claro, escuro e alto contraste"
+    ],
+    "rules": [
+      { "name": "A Regra da Cor com Função", "body": "Cor existe para orientar ação, seleção ou estado; todo significado permanece disponível por texto e/ou SF Symbol.", "section": "colors" },
+      { "name": "A Regra Semântica", "body": "No SwiftUI, preservar cores e materiais semânticos do sistema em vez de fixar valores claros ou escuros.", "section": "colors" },
+      { "name": "A Regra do Procedimento Primeiro", "body": "Títulos criam pontos de retomada; corpo e código preservam conforto de leitura e não são comprimidos para aumentar densidade visual.", "section": "typography" },
+      { "name": "A Regra Plana por Padrão", "body": "Superfícies permanecem planas; elevação estrutural pertence ao macOS e não a sombras customizadas.", "section": "elevation" }
+    ],
+    "dos": [
+      "Manter a arquitetura barra lateral, lista e detalhe.",
+      "Usar controles, menus, materiais, fontes e foco nativos do macOS.",
+      "Limitar runbooks a 760 pt e preservar seleção de texto.",
+      "Combinar SF Symbol, texto e estado acessível.",
+      "Verificar superfícies em temas claro e escuro."
+    ],
+    "donts": [
+      "Não substituir cores semânticas por valores fixos.",
+      "Não usar cor como único indicador de significado.",
+      "Não adicionar cards decorativos, sombras customizadas ou gradientes.",
+      "Não misturar SF Symbols com ícones de outro estilo.",
+      "Não ocultar consequências de exclusão permanente."
+    ]
+  }
+}

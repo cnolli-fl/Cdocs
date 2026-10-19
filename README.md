@@ -1,131 +1,136 @@
 # Cdocs
 
-Cdocs é um aplicativo nativo para macOS destinado a registrar, localizar e reutilizar soluções de suporte de TI. Os dados ficam armazenados localmente no Mac e o aplicativo não depende de internet ou serviços externos.
+**Uma base de conhecimento de suporte de TI, direto no Mac.**
 
-## Funcionalidades
+O Cdocs é um aplicativo nativo para macOS que ajuda a registrar, encontrar e reutilizar soluções de problemas de TI. Em vez de deixar procedimentos espalhados em arquivos e anotações, ele reúne o problema, o diagnóstico, a solução e a validação em um mesmo lugar.
 
-- Cadastro completo de problemas, diagnóstico, solução, validação, riscos e reversão.
-- Pesquisa instantânea em todo o conteúdo e filtros por coleção, status e dificuldade.
-- Organização por categorias, tags, favoritos, recentes e estados do documento.
-- Editor de procedimentos com Markdown e blocos de código copiáveis.
-- Persistência local com SwiftData.
-- Histórico básico de alterações e contador de consultas.
-- Anexos locais de até 25 MB, com seleção pelo Finder e arrastar/soltar.
-- Lixeira com restauração e exclusão definitiva.
-- Exportação individual em Markdown ou JSON e importação de JSON.
-- Backup completo em pasta `.cdocsbackup`, incluindo anexos, sem substituir registros existentes durante a restauração.
-- Impressão e exportação em PDF pelo painel de impressão do macOS.
-- Atalhos de teclado e suporte aos temas claro e escuro.
-- Cinco registros fictícios para demonstrar o uso.
+Desenvolvido com **Swift, SwiftUI e SwiftData**, funciona com armazenamento local e não depende de conta, servidor ou conexão com a internet para consultar a biblioteca.
 
-## Requisitos
+![Interface do Cdocs com biblioteca, filtros e consulta de um procedimento de suporte de TI](docs/images/cdocs-interface.jpg)
+
+*Biblioteca de procedimentos e visualização de uma documentação. A captura mostra um exemplo de consulta, sem dados de máquinas ou clientes.*
+
+## Por que este projeto existe
+
+Problemas de suporte podem se repetir, mas a solução nem sempre fica registrada de forma fácil de consultar. O Cdocs organiza esse conhecimento para que um procedimento possa ser encontrado e reaproveitado na próxima ocorrência.
+
+Cada documentação pode reunir contexto, sintomas, mensagens de erro, sistema afetado, causa, passos de solução, forma de validar o resultado e orientações de reversão.
+
+## Recursos
+
+| Área | O que o aplicativo oferece |
+| --- | --- |
+| Documentação | Registro de problemas, diagnóstico, solução, validação, riscos, reversão e links úteis. |
+| Pesquisa | Busca no conteúdo dos documentos, com tratamento de maiúsculas e acentos. |
+| Organização | Categorias, tags, favoritos, recentes e filtros por situação, dificuldade e sistema afetado. |
+| Procedimentos | Editor com Markdown e exibição de blocos de código copiáveis. |
+| Acompanhamento | Histórico básico de alterações e contador de consultas. |
+| Anexos | Arquivos locais de até 25 MB, selecionados pelo Finder ou por arrastar e soltar. |
+| Recuperação | Lixeira com restauração e exclusão definitiva. |
+| Portabilidade | Exportação em Markdown ou JSON, importação de JSON, impressão e PDF. |
+| Backup | Cópia da biblioteca e dos anexos em uma pasta `.cdocsbackup`. |
+
+A interface também oferece atalhos de teclado e suporte aos temas claro e escuro. Na primeira execução, o aplicativo cria cinco documentações fictícias para demonstração.
+
+## Tecnologias e organização
+
+- **Swift:** modelos, regras de validação e serviços do aplicativo.
+- **SwiftUI e AppKit:** interface nativa, seleção de arquivos e integração com o macOS.
+- **SwiftData:** persistência local de documentos, anexos e histórico.
+- **XCTest:** testes automatizados dos serviços.
+
+```text
+Cdocs/
+├── Models/              Modelos SwiftData e estado de edição
+├── Services/            Pesquisa, validação, anexos, exportação, backup e impressão
+├── Views/               Biblioteca, editor, detalhes e renderização Markdown
+├── Assets.xcassets/     Ícone e recursos visuais
+└── CdocsApp.swift       Entrada do aplicativo
+CdocsTests/              Testes dos serviços
+Cdocs.xcodeproj/         Projeto do Xcode
+docs/images/            Captura da interface
+```
+
+A pesquisa e os filtros ficam separados das telas. Os serviços cuidam de tarefas como anexos, validação, exportação e backup, enquanto os modelos representam os documentos e seus relacionamentos.
+
+## Como executar
+
+### Requisitos
 
 - macOS 14 ou posterior.
-- Xcode 15 ou posterior. O projeto foi verificado com Xcode 26.6.
+- Xcode 15 ou posterior, com SDK compatível com o projeto.
 - Nenhuma dependência externa.
 
-## Abrir e executar
+### Pelo Xcode
 
-1. Abra [Cdocs.xcodeproj](Cdocs.xcodeproj) no Xcode.
-2. Selecione o esquema `Cdocs` e o destino `My Mac`.
-3. Pressione `Command + R`.
+1. Clone o repositório e abra [Cdocs.xcodeproj](Cdocs.xcodeproj).
+2. Selecione o esquema **Cdocs** e o destino **My Mac**.
+3. Execute com **Command + R**.
 
-Na primeira execução, o aplicativo cria cinco documentações fictícias. Elas podem ser editadas ou excluídas normalmente.
+### Pelo terminal
 
-Também é possível compilar pela linha de comando:
+Na raiz do repositório:
 
 ```bash
-DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer \
-  xcodebuild -project Cdocs.xcodeproj \
+xcodebuild -project Cdocs.xcodeproj \
   -scheme Cdocs \
   -configuration Debug \
   -derivedDataPath /tmp/CdocsDerivedData \
   CODE_SIGNING_ALLOWED=NO build
 ```
 
+Se o sistema estiver usando somente as ferramentas de linha de comando, selecione a instalação completa do Xcode com `DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer` antes de executar o comando.
+
+## Como usar
+
+1. Crie uma documentação e preencha o título, o resumo e o contexto do problema.
+2. Registre a solução em passos e explique como conferir o resultado.
+3. Escolha categoria, tags, sistema afetado, dificuldade e situação.
+4. Adicione anexos ou links quando ajudarem a entender o procedimento.
+5. Use a pesquisa e os filtros para localizar o conteúdo depois.
+
+Documentos podem ficar como **Rascunho**, **Documentado**, **Em revisão** ou **Obsoleto**. Use favoritos para os procedimentos consultados com mais frequência.
+
+## Backup, importação e exportação
+
+- **Backup completo:** use o menu de dados ou **Arquivo > Criar backup**. A pasta `.cdocsbackup` contém `documents.json` e os anexos.
+- **Restauração:** escolha **Arquivo > Restaurar backup**. Registros com o mesmo identificador são preservados, sem substituição silenciosa.
+- **Exportação individual:** use o menu de ações de uma documentação para gerar Markdown ou JSON.
+- **Importação:** escolha **Dados > Importar documentação JSON**.
+- **PDF:** abra **Imprimir** e selecione **Salvar como PDF** no painel do macOS.
+
+O banco SwiftData fica na área de Application Support administrada pelo macOS. Os anexos são armazenados em `~/Library/Application Support/Cdocs/Attachments/`. Use os recursos de backup do aplicativo em vez de alterar esses arquivos manualmente.
+
 ## Testes
 
-No Xcode, pressione `Command + U`. Pela linha de comando:
+No Xcode, use **Command + U**. Pelo terminal:
 
 ```bash
-DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer \
-  xcodebuild -project Cdocs.xcodeproj \
+xcodebuild -project Cdocs.xcodeproj \
   -scheme Cdocs \
   -configuration Debug \
   -derivedDataPath /tmp/CdocsDerivedData \
   CODE_SIGNING_ALLOWED=NO test
 ```
 
-Os testes cobrem pesquisa, filtros, lixeira, validação, serialização JSON, importação por modelo e exportação Markdown.
+A suíte cobre pesquisa e filtros, lixeira, validação, serialização JSON, importação e exportação Markdown, além de cenários de backup e restauração. O histórico registra alterações básicas; não oferece comparação completa entre versões.
 
-## Onde os dados ficam armazenados
+## Distribuição e cuidados com os dados
 
-O banco SwiftData é criado pelo contêiner padrão do aplicativo, dentro da área de Application Support administrada pelo macOS para o identificador `com.local.Cdocs`.
+Para gerar uma versão distribuível, use **Product > Archive** no Xcode. Distribuição fora da App Store exige configurar a equipe Apple Developer, a assinatura Developer ID e a notarização.
 
-Os anexos ficam em:
+Os dados ficam no Mac, mas documentos, anexos e backups ainda podem conter informações internas. Não registre senhas, tokens ou chaves. O controle de anexos valida tamanho e extensão; não substitui análise antimalware. O backup não possui criptografia própria nesta versão.
 
-```text
-~/Library/Application Support/Cdocs/Attachments/
-```
+## Possíveis evoluções
 
-Não edite manualmente o banco ou a pasta de anexos. Use o backup do próprio aplicativo.
+- Pré-visualização do Markdown durante a edição.
+- Destaque dos termos encontrados na busca.
+- Comparação entre versões dos documentos.
+- Testes automatizados da interface.
+- Criptografia opcional dos backups.
 
-## Backup e restauração
+## Autor
 
-Para criar um backup:
+Projeto pessoal de **Caio Nolli**.
 
-1. Abra o menu de dados na barra de ferramentas ou use `Arquivo > Criar backup`.
-2. Escolha uma pasta de destino.
-3. O Cdocs cria uma pasta com extensão `.cdocsbackup`, contendo `documents.json` e a pasta `Attachments`.
-
-Para restaurar:
-
-1. Escolha `Arquivo > Restaurar backup`.
-2. Selecione a pasta `.cdocsbackup`.
-3. Documentos com o mesmo identificador são preservados e não são sobrescritos silenciosamente.
-
-É recomendável guardar o backup em um local protegido e aprovado pela política da empresa. O backup pode conter informações internas presentes nas documentações.
-
-## Exportação individual e PDF
-
-- No menu de ações de uma documentação, escolha exportar como Markdown ou JSON.
-- Para importar um JSON, use `Dados > Importar documentação JSON` na barra de ferramentas.
-- Para gerar PDF, escolha `Imprimir` e depois `Salvar como PDF` no painel nativo do macOS.
-
-## Estrutura do projeto
-
-```text
-Cdocs/
-├── Models/       Modelos SwiftData e estado editável
-├── Services/     Pesquisa, validação, anexos, backup, impressão e dados fictícios
-├── Views/        Navegação, lista, detalhe, editor e renderização Markdown
-├── Assets.xcassets
-└── CdocsApp.swift
-
-CdocsTests/       Testes unitários
-Cdocs.xcodeproj/  Projeto do Xcode
-```
-
-## Gerar uma versão distribuível
-
-1. No Xcode, selecione `Product > Archive`.
-2. No Organizer, escolha `Distribute App`.
-3. Para distribuição fora da App Store, configure uma equipe Apple Developer, assinatura Developer ID e notarização.
-4. Para uso apenas no próprio Mac durante o desenvolvimento, execute diretamente pelo Xcode.
-
-Antes de distribuir dentro da empresa, ajuste o identificador do bundle, a equipe de assinatura e as regras de sandbox conforme a política corporativa. O projeto já inclui o ícone oficial do Cdocs em todos os tamanhos exigidos pelo macOS.
-
-## Privacidade e segurança
-
-- Não registre senhas, tokens, chaves, dados pessoais ou segredos da empresa.
-- Revise documentações e anexos antes de exportar ou compartilhar um backup.
-- O aplicativo valida tamanho e extensão dos anexos, mas não faz análise antimalware.
-
-## Melhorias futuras
-
-- Pré-visualização lado a lado do Markdown durante a edição.
-- Destaque visual do termo pesquisado.
-- Versionamento com comparação completa entre revisões.
-- Testes de interface automatizados.
-- Criptografia opcional do backup.
-- Sincronização corporativa, apenas se futuramente autorizada e definida pela empresa.
+[GitHub](https://github.com/cnolli-fl) · [LinkedIn](https://www.linkedin.com/in/caio-nolli-843580388/)

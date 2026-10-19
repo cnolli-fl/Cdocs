@@ -129,6 +129,10 @@ Os dados ficam no Mac, mas documentos, anexos e backups ainda podem conter infor
 - Testes automatizados da interface.
 - Criptografia opcional dos backups.
 
+## Licença
+
+Este projeto é open source e está disponível sob a [licença MIT](LICENSE). Você pode usar, modificar e distribuir o código, mantendo o aviso de copyright e a licença.
+
 ## Autor
 
 Projeto pessoal de **Caio Nolli**.
